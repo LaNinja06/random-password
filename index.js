@@ -1,43 +1,32 @@
-/*
-1 meter = 3.281 feet
-1 liter = 0.264 gallon
-1 kilogram = 2.204 pound
-*/
+const characters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9","~","`","!","@","#","$","%","^","&","*","(",")","_","-","+","=","{","[","}","]",",","|",":",";","<",">",".","?",
+"/"];
 
-// const meterToFeet = 3.281 
-// const literToGallon = 0.264
-// const kiloToPound = 2.204 
-
-// const feetToMeter = 0.305
-// const gallonToLiter = 3.785
-// const poundToKilo = 0.454
+// Two random password
+// passwords should be 15 characters long
 
 
-let inputbox = document.getElementById("inputbox")
-let convertBtn = document.getElementById("convert-btn")
+const generateButton = document.getElementById("generateButton-el")
+let password1El = document.getElementById("password1-el")
+let password2El = document.getElementById("password2-el")
 
-let lengthEl = document.getElementById("length-el")
-let volumeEl = document.getElementById("volume-el")
-let massEl = document.getElementById("mass-el")
+// generate random characters from the values above 
+function getRandomChars() {
+    let randomChar = Math.floor(Math.random() * characters.length)
+    return characters[randomChar] 
+}
 
-convertBtn.addEventListener ("click", function () {
-    const value = parseInt(inputbox.value)
-    
-    if (value) {
-        const meterToFeet = (value * 3.281).toFixed(3)
-        const feetToMeter = (value * 0.305).toFixed(3)
-        
-        const literToGallon = (value * 0.264).toFixed(3)
-        const gallonToLitter = (value * 3.785).toFixed(3)
-        
-        const kiloToPound = (value * 2.204).toFixed(3)
-        const poundToKilo = (value * 0.454).toFixed(3)    
-    
-        lengthEl.textContent = `${value} meters = ${meterToFeet} feets | ${value} feets = ${feetToMeter} meter`
-        
-        volumeEl.textContent = `${value} liters = ${literToGallon} gallons | ${value} gallons = ${gallonToLitter} liters`
-        
-        massEl.textContent = `${value} kilos = ${kiloToPound} pounds | ${value} pounds = ${poundToKilo} kilos` 
+// generate random Password, based on the given randomChar
+
+function generateRandomPassword() {
+    let password = ""
+    for (let i = 0; i < 15; i ++ ) {
+        password += getRandomChars()        
     }
-    
+    return password
+}
+
+generateButton.addEventListener("click", () => {
+     password1El.textContent = generateRandomPassword()
+     password2El.textContent = generateRandomPassword()
+
 })
